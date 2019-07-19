@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE generatorConfiguration
+                PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+                "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration >
+<classPathEntry location="E:\repository\mysql\mysql-connector-java\8.0.13\mysql-connector-java-8.0.13.jar" />
+<context id="context1" >
+    <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>
+    <commentGenerator>
+        <property name="suppressDate" value="true" />
+    </commentGenerator>
+    <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                    connectionURL="jdbc:mysql://127.0.0.1:3306/zx_registered_event?serverTimezone=GMT&amp;useSSL=false&amp;nullNamePatternMatchesAll=true"
+                    userId="root"
+                    password="rootDemo" />
+    <javaModelGenerator targetPackage="cn.com.flaginfo.platform.registered.mybatis.entity" targetProject="src/main/java">
+        <property name="enableSubPackages" value="true" />
+        <property name="rootClass" value="cn.com.flaginfo.platform.registered.mybatis.base.BaseEntity"/>
+    </javaModelGenerator>
+    <sqlMapGenerator targetPackage="mappers"  targetProject="src/main/resources" >
+        <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+    <javaClientGenerator targetPackage="cn.com.flaginfo.platform.registered.mybatis.mapper" targetProject="src/main/java" type="XMLMAPPER" >
+        <property name="enableSubPackages" value="true" />
+        <property name="rootInterface" value="cn.com.flaginfo.platform.registered.mybatis.mapper.BaseMapper"/>
+    </javaClientGenerator>
+<!--   <table schema="zx_mop_mobile" tableName="t_business_info" domainObjectName="TBusinessInfo"
+           selectByExampleQueryId="true"
+           enableInsert="true"
+           enableUpdateByExample="true"
+           enableUpdateByPrimaryKey="true"
+           enableDeleteByExample="true"
+           enableDeleteByPrimaryKey="true"
+           enableSelectByPrimaryKey="true"
+           enableSelectByExample="true"
+           enableCountByExample="true"
+    >
+    </table>-->
+<!--    <table schema="zx_mop_mobile" tableName="t_interface" domainObjectName="TInterface"
+           selectByExampleQueryId="true"
+           enableInsert="true"
+           enableUpdateByExample="true"
+           enableUpdateByPrimaryKey="true"
+           enableDeleteByExample="true"
+           enableDeleteByPrimaryKey="true"
+           enableSelectByPrimaryKey="true"
+           enableSelectByExample="true"
+           enableCountByExample="true"
+    >
+    </table>-->
+    <table schema="zx_registered_event" tableName="application_service" domainObjectName="ApplicationService"
+           selectByExampleQueryId="true"
+           enableInsert="true"
+           enableUpdateByExample="true"
+           enableUpdateByPrimaryKey="true"
+           enableDeleteByExample="true"
+           enableDeleteByPrimaryKey="true"
+           enableSelectByPrimaryKey="true"
+           enableSelectByExample="true"
+           enableCountByExample="true"
+    >
+    </table>
+   <!-- <table schema="zx_registered_event" tableName="event_failure_record" domainObjectName="EventFailureRecord"
+           selectByExampleQueryId="true"
+           enableInsert="true"
+           enableUpdateByExample="true"
+           enableUpdateByPrimaryKey="true"
+           enableDeleteByExample="true"
+           enableDeleteByPrimaryKey="true"
+           enableSelectByPrimaryKey="true"
+           enableSelectByExample="true"
+           enableCountByExample="true"
+    />
+    <table schema="zx_registered_event" tableName="register_event" domainObjectName="RegisterEvent"
+           selectByExampleQueryId="true"
+           enableInsert="true"
+           enableUpdateByExample="true"
+           enableUpdateByPrimaryKey="true"
+           enableDeleteByExample="true"
+           enableDeleteByPrimaryKey="true"
+           enableSelectByPrimaryKey="true"
+           enableSelectByExample="true"
+           enableCountByExample="true"
+    >
+    </table>-->
+</context>
+</generatorConfiguration>

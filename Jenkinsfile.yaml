@@ -1,0 +1,178 @@
+# Jenkinsfile.groovy配置文件
+#  1.修改【Jenkinsfile.groovy】文件末尾"to:"邮箱地址，指定构建失败时，邮件收件人；
+#  2.自动化测试链接(autotest_jenkins_link)可以从confluence(http://confluence.flaginfo.com.cn/pages/viewpage.action?pageId=27001811)上获取;
+#  3.项目通过jenkins的Publisher over SSH插件发布时，必须配置发布目标服务器(deploy_server_name)、发布文件名称(deploy_file_name)、在目标服务器上执行的命令(deploy_command_ssh)和文件推送到的目标服务器路径(deploy_remote_path)；
+#  4.如果采用docker或者其他脚本发布，请填写发布命令(deploy_command)；
+#  5.更多使用说明请访问Confluence(http://confluence.flaginfo.com.cn/pages/viewpage.action?pageId=27006528)
+
+# 服务健康检查命令，必须返回包含version的json格式数据
+health_check_command: "curl -s -X GET "
+#服务健康检查接口地址
+service_health_check_url:
+
+# 演示环境发布配置
+dev_env_deploy:
+# 填写依赖服务的健康检查链接和依赖服务版本
+# 服务构建命令或脚本；mvn clean package -DskipTests -U
+  build_command: "mvn clean package -DskipTests -U"
+# 以下是jenkins插件publisher over SSH 插件需要参数，使用该插件发布必须传对应参数
+# 发布到的服务器名称，名称以jenkins中publish ssh 配置名称为准 K8S-225
+  deploy_server_name: "K8S-225"
+# 发布文件名称
+  deploy_file_name: "without-code-provider/target/*.jar"
+# 服务器上发布服务的命令或脚本
+  deploy_command_ssh: "cd /data/transform/transform/bin/ && sh buildDocker.sh without-code-provider ${BUILD_NUMBER} docker.flaginfo.cn/cloud-manage && sh deployApp.sh without-code-provider docker.flaginfo.cn/cloud-manage/without-code-provider:${BUILD_NUMBER} dev 9316 1000 2000"
+# 服务发布到服务器上的绝对路径
+  deploy_remote_path: "/opt/yxt/release/without-code-provider"
+# 发布传输时需要移除的文件前缀
+  remove_prefix_path: "without-code-provider/target"
+# 需要排除的上传文件
+  excludes_file: ""
+# 如果测试环境是通过脚本发布，请填写脚本
+  deploy_command: ""
+
+
+
+#测试环境发布配置
+test_env_deploy:
+# 填写依赖服务的健康检查链接和依赖服务版本
+  dependency_service_health_check_url: ""
+  dependency_service_version: ""
+# 服务构建命令或脚本；mvn clean package -DskipTests -U
+  build_command: "mvn clean package -DskipTests -U"
+# 以下是jenkins插件publisher over SSH 插件需要参数，使用该插件发布必须传对应参数
+# 发布到的服务器名称，名称以jenkins中publish ssh 配置名称为准 K8S-225
+  deploy_server_name: "K8S-225"
+# 发布文件名称
+  deploy_file_name: "without-code-provider/target/*.jar"
+# 服务器上发布服务的命令或脚本
+  deploy_command_ssh: "cd /data/transform/transform/bin/ && sh buildDocker.sh without-code-provider ${BUILD_NUMBER} docker.flaginfo.cn/cloud-manage && sh deployApp.sh without-code-provider docker.flaginfo.cn/cloud-manage/without-code-provider:${BUILD_NUMBER} vtest 9316 1000 2000"
+# 服务发布到服务器上的绝对路径
+  deploy_remote_path: "/opt/yxt/release/without-code-provider"
+# 发布传输时需要移除的文件前缀
+  remove_prefix_path: "without-code-provider/target"
+# 需要排除的上传文件
+  excludes_file: ""
+# 如果测试环境是通过脚本发布，请填写脚本
+  deploy_command: ""
+# 测试环境自动化测试链接
+  autotest_jenkins_link: ""
+# 触发自动化测试任务的jenkins token，默认配置"6B616E672E7975616E40313233343536"
+  autotest_trigger_token: "6B616E672E7975616E40313233343536"
+# 自动化测试失败时是否终止当前发布，填写true or false，默认自动化测试失败不终止发布
+  not_fail_deploy: true
+# 调用shell执行自动化测试
+  autotest_script: ""
+
+#压测环境发布配置
+perfor_env_deploy:
+# 填写依赖服务的健康检查链接和依赖服务版本
+  dependency_service_health_check_url: ""
+  dependency_service_version: ""
+# 构建命令或脚本；
+  build_command: ""
+# 以下是jenkins插件publisher over SSH 插件需要参数，使用该插件发布必须传对应参数
+# 发布到的服务器名称，名称以jenkins中publish ssh 配置名称为准
+  deploy_server_name: ""
+# 发布文件名称
+  deploy_file_name: ""
+# 服务器上发布服务的命令或脚本
+  deploy_command_ssh: ""
+# 服务发布到服务器上的绝对路径
+  deploy_remote_path: ""
+# 发布传输时需要移除的文件前缀
+  remove_prefix_path: ""
+# 需要排除的上传文件
+  excludes_file: ""
+# 通过脚本发布，请填写脚本
+  deploy_command: ""
+# 自动化测试链接
+  autotest_jenkins_link: ""
+# 触发自动化测试任务的jenkins token，默认配置"6B616E672E7975616E40313233343536"
+  autotest_trigger_token: "6B616E672E7975616E40313233343536"
+# 自动化测试失败时是否终止当前发布，填写true or false，默认自动化测试失败不终止发布
+  not_fail_deploy: true
+# 调用shell脚本执行自动化测试
+  autotest_script: ""
+
+# 演示环境发布配置
+demo_env_deploy:
+# 填写依赖服务的健康检查链接和依赖服务版本
+  dependency_service_health_check_url: ""
+  dependency_service_version: ""
+# 服务构建命令或脚本；mvn clean package -DskipTests -U
+  build_command: "mvn clean package -DskipTests -U"
+# 以下是jenkins插件publisher over SSH 插件需要参数，使用该插件发布必须传对应参数
+# 发布到的服务器名称，名称以jenkins中publish ssh 配置名称为准 K8S-225
+  deploy_server_name: "K8S-225"
+# 发布文件名称
+  deploy_file_name: "without-code-provider/target/*.jar"
+# 服务器上发布服务的命令或脚本
+  deploy_command_ssh: "cd /data/transform/transform/bin/ && sh buildDocker.sh without-code-provider ${BUILD_NUMBER} docker.flaginfo.cn/cloud-manage && sh deployApp.sh without-code-provider docker.flaginfo.cn/cloud-manage/without-code-provider:${BUILD_NUMBER} pre 9316 1000 2000"
+# 服务发布到服务器上的绝对路径
+  deploy_remote_path: "/opt/yxt/release/without-code-provider"
+# 发布传输时需要移除的文件前缀
+  remove_prefix_path: "without-code-provider/target"
+# 需要排除的上传文件
+  excludes_file: ""
+# 如果测试环境是通过脚本发布，请填写脚本
+  deploy_command: ""
+# 测试环境自动化测试链接
+  autotest_jenkins_link: ""
+# 触发自动化测试任务的jenkins token，默认配置"6B616E672E7975616E40313233343536"
+  autotest_trigger_token: ""
+# 自动化测试失败时是否终止当前发布，填写true or false，默认自动化测试失败不终止发布
+  not_fail_deploy: true
+# 调用shell执行自动化测试
+  autotest_script: ""
+
+# 生产环境发布配置
+customer_env_deploy:
+# 填写依赖服务的健康检查链接和依赖服务版本
+  dependency_service_health_check_url: ""
+  dependency_service_version: ""
+# 服务构建命令或脚本；
+  build_command: "mvn clean package -DskipTests -U"
+# 以下是jenkins插件publisher over SSH 插件需要参数，使用该插件发布必须传对应参数
+# 发布到的服务器名称，名称以jenkins中publish ssh 配置名称为准 
+  deploy_server_name: "K8S-225"
+# 发布文件名称
+  deploy_file_name: "without-code-provider/target/*.jar"
+# 服务器上发布服务的命令或脚本
+  deploy_command_ssh: "cd /data/transform/transform/bin/ && sh buildDocker.sh without-code-provider ${BUILD_NUMBER} docker.flaginfo.cn/cloud-manage && sh deployApp.sh  without-code-provider docker.flaginfo.cn/cloud-manage/without-code-provider:${BUILD_NUMBER} prod 9316 1000 2000"
+# 服务发布到服务器上的绝对路径
+  deploy_remote_path: "/opt/yxt/release/without-code-provider"
+# 发布传输时需要移除的文件前缀
+  remove_prefix_path: "without-code-provider/target"
+# 需要排除的上传文件
+  excludes_file: ""
+# 如果测试环境是通过脚本发布，请填写脚本
+  deploy_command: ""
+# 测试环境自动化测试链接
+  autotest_jenkins_link: ""
+# 触发自动化测试任务的jenkins token，默认配置"6B616E672E7975616E40313233343536"
+  autotest_trigger_token: ""
+# 自动化测试失败时是否终止当前发布，填写true or false，默认自动化测试失败不终止发布
+  not_fail_deploy: true
+# 调用shell执行自动化测试
+  autotest_script: ""
+
+
+
+################ 【预留系统配置，请勿自行更改】##################################
+# jira 问题主题现网热修复关键字，默认紧急修复
+jira_summary_field_hotfix_keywords:
+# jira问题热修复工作流转换动作名称
+jira_issue_hotfix_workfolw_name:
+# jira问题非热修复工作流转换动作名称
+jira_issue_normal_workflow_name:
+# jira问题大版本发布工作流流转动作名称
+jira_issue_big_version_workflow_name:
+# jira问题小版本发布工作流流转动作名称
+jira_issue_small_version_workflow_name:
+# jira问题小版本上压测环境控制内容,是或否，默认否
+jira_issue_small_version_performance_deploy_key:
+# jira问题推送部署工作流流转动作名称
+jira_issue_deploy_workflow_name:
+# jenkins服务器配置jira site 名称，默认JIRA
+jenkins_jira_site_name:

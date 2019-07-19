@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--mysql mybatis config-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init"
+          destroy-method="close"
+          p:url="${db.url}"
+          p:username="${db.user}"
+          p:password="${db.password}"
+          p:maxActive="${mysql.maxActive}"
+          p:initialSize="${mysql.initialSize}"
+          p:minIdle="${mysql.minIdle}"
+          p:maxWait="${mysql.maxWait}"
+    />
+    <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
+          p:dataSource-ref="dataSource"
+          p:configLocation="classpath:mybatis.xml"
+          p:mapperLocations="classpath:mappers/*.xml"
+    />
+    <!-- DAO接口所在包名，Spring会自动查找其下的类 ,包下的类需要使用@MapperScan注解,否则容器注入会失败 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+          p:basePackage="cn.com.flaginfo.platform.registered.mybatis.mapper"
+          p:sqlSessionFactoryBeanName="sqlSessionFactory"/>
+
+
+    <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+          p:dataSource-ref="dataSource" />
+    <!--通过后缀为Tx ,添加事务机制  cn.com.flaginfo包的所有子包 下面的以Impl结尾的类中的 以Tx结尾的所有方法-->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="*Tx" timeout="60" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+        </tx:attributes>
+    </tx:advice>
+    <aop:config>
+        <aop:advisor pointcut="execution(* cn.com.flaginfo..*Impl.*Tx(..))" advice-ref="txAdvice" />
+    </aop:config>
+
+    <!--线程池配置-->
+    <bean class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <!-- 核心线程数  -->
+        <property name="corePoolSize" value="20" />
+        <!-- 最大线程数 -->
+        <property name="maxPoolSize" value="50" />
+        <!-- 队列最大长度 >=mainExecutor.maxSize -->
+        <property name="queueCapacity" value="1000" />
+        <!-- 队列最大长度 >=mainExecutor.maxSize -->
+        <property name="keepAliveSeconds" value="300" />
+        <!-- 线程池对拒绝任务(无线程可用)的处理策略 -->
+        <property name="rejectedExecutionHandler">
+            <bean class="java.util.concurrent.ThreadPoolExecutor$CallerRunsPolicy" />
+        </property>
+    </bean>
+
+</beans>
