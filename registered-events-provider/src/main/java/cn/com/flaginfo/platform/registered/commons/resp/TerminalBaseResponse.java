@@ -1,12 +1,12 @@
 package cn.com.flaginfo.platform.registered.commons.resp;
 
-import cn.com.flaginfo.platform.api.common.base.BaseResponse;
+
 
 /**
  * @Author Meng.Liu
  * @Date 2017/12/19 10:44
  */
-public class TerminalBaseResponse<T> extends BaseResponse<T> {
+public class TerminalBaseResponse<T> {
 
     public static final long SUCCESS = 200L;
 

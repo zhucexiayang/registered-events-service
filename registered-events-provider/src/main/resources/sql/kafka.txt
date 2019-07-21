@@ -1,0 +1,11 @@
+1.启动生产者
+    cd D:\Tool\kafka_2.11-2.1.1\bin\windows
+    kafka-console-producer.bat --broker-list localhost:9092 --topic haha
+
+2.新建cmd窗口:
+    cd D:\Tool\kafka_2.11-2.1.1\bin\windows
+    kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic haha--from-beginning
+
+3.新建cmd窗口:
+      cd D:\Tool\kafka_2.11-2.1.1\bin\windows
+      kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic haha

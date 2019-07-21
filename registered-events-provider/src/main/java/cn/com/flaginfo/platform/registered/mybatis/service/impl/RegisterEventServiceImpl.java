@@ -1,10 +1,9 @@
 package cn.com.flaginfo.platform.registered.mybatis.service.impl;
 
-import cn.com.flaginfo.platform.api.common.base.BaseResponse;
+import cn.com.flaginfo.platform.registered.commons.resp.BaseResponse;
 import cn.com.flaginfo.platform.registered.commons.resp.TerminalBaseResponse;
 import cn.com.flaginfo.platform.registered.commons.util.DateUtil;
 import cn.com.flaginfo.platform.registered.mybatis.entity.ApplicationService;
-import cn.com.flaginfo.platform.registered.mybatis.entity.ApplicationServiceExample;
 import cn.com.flaginfo.platform.registered.mybatis.entity.RegisterEvent;
 import cn.com.flaginfo.platform.registered.mybatis.entity.RegisterEventExample;
 import cn.com.flaginfo.platform.registered.mybatis.service.ApplicationServiceService;

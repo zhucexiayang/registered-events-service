@@ -70,4 +70,9 @@ public interface ApplicationServiceMapper extends BaseMapper<ApplicationService,
      * @mbggenerated
      */
     int updateByExample(@Param("record") ApplicationService record, @Param("example") ApplicationServiceExample example);
+
+    /**
+     *
+     */
+    List<ApplicationService> getAppInfoByEventType(@Param("record") ApplicationService record);
 }

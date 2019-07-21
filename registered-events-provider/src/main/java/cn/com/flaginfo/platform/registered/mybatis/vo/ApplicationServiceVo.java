@@ -5,6 +5,7 @@ import cn.com.flaginfo.platform.registered.mybatis.entity.ApplicationService;
 public class ApplicationServiceVo extends ApplicationService {
     private String[] regsiterEvent;
 
+
     public String[] getRegsiterEvent() {
         return regsiterEvent;
     }

@@ -10,7 +10,7 @@ import com.alibaba.rocketmq.common.protocol.heartbeat.MessageModel;
 
 public class RocketConsumer {
 
-	static final DefaultMQPushConsumer pushConsumer = new DefaultMQPushConsumer(DiamondProperties.getInstance().getProperty("rocket_mq_group"));
+	/*static final DefaultMQPushConsumer pushConsumer = new DefaultMQPushConsumer(DiamondProperties.getInstance().getProperty("rocket_mq_group"));
 
 	static final DefaultMQPullConsumer pullConsumer = new DefaultMQPullConsumer(DiamondProperties.getInstance().getProperty("rocket_mq_group"));
 
@@ -46,5 +46,5 @@ public class RocketConsumer {
 
 	public static MQPullConsumerScheduleService getScheduleservice() {
 		return scheduleService;
-	}
+	}*/
 }

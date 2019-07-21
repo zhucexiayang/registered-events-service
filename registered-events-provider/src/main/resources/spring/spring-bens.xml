@@ -59,5 +59,6 @@
             <bean class="java.util.concurrent.ThreadPoolExecutor$CallerRunsPolicy" />
         </property>
     </bean>
+    <bean id="springUtil" class="cn.com.flaginfo.platform.registered.commons.util.SpringUtil"/>
 
 </beans>

@@ -28,6 +28,8 @@ public class ApplicationService extends BaseEntity {
      */
     private String callbackUrl;
 
+    private String eventType;
+
 
 
 
@@ -104,4 +106,12 @@ public class ApplicationService extends BaseEntity {
         this.callbackUrl = callbackUrl;
     }
 
+
+    public String getEventType() {
+        return eventType;
+    }
+
+    public void setEventType(String eventType) {
+        this.eventType = eventType;
+    }
 }

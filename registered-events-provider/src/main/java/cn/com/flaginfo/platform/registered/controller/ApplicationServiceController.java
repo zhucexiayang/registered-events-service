@@ -18,4 +18,9 @@ public class ApplicationServiceController {
     public Object saveOrUpdateInfo(@RequestBody ApplicationServiceVo item){
         return service.saveOrUpdate(item);
     }
+
+    @RequestMapping("registerUrlAndEvents")
+    public Object registerCallbackUrlAndEvents(@RequestBody ApplicationServiceVo item){
+        return service.registerCallbakcUrlAndEvents(item);
+    }
 }

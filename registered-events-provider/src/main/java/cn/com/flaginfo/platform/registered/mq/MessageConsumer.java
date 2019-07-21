@@ -21,14 +21,14 @@ public class MessageConsumer {
     private MessageListenerAdapter messageListenerAdapter;
     //@PostConstruct
     public void setConsumer() throws MQClientException{
-        String MQtype= DynamicProperties.getInstance().getProperty("MQtype");
+       /* String MQtype= DynamicProperties.getInstance().getProperty("MQtype");
         if(MQtype.equals("TEST")) {
             DefaultMQPushConsumer consumer=RocketConsumer.getPushConsumer();
             consumer.subscribe(DynamicProperties.getInstance().getProperty("topic_consumer"),"*");
             consumer.registerMessageListener(messageListenerAdapter);
             consumer.start();
             log.info("consumer started");
-        }
+        }*/
 
     }
 }

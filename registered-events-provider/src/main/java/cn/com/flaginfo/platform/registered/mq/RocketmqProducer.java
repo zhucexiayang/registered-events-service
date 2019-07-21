@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 
 
 public class RocketmqProducer {
-    private static final Logger log = LoggerFactory.getLogger(RocketmqProducer.class);
+    /*private static final Logger log = LoggerFactory.getLogger(RocketmqProducer.class);
     private DefaultMQProducer producer;
     private static RocketmqProducer instance = new RocketmqProducer();
     public  static RocketmqProducer getInstance(){
@@ -96,6 +96,6 @@ public class RocketmqProducer {
 
     public void close(){
         producer.shutdown();
-    }
+    }*/
 }
 
