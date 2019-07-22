@@ -47,12 +47,14 @@ DROP TABLE IF EXISTS `event_failure_record`;
 CREATE TABLE `event_failure_record` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `app_id` bigint(20) DEFAULT NULL COMMENT '应用id',
+  `app_key` varchar(64) DEFAULT NULL,
+  `event_type` varchar(64) DEFAULT NULL COMMENT '事件类型',
   `status` varchar(12) DEFAULT NULL,
   `content` varchar(2000) DEFAULT NULL COMMENT '内容',
   `create_date` varchar(32) DEFAULT NULL,
   `modify_date` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of event_failure_record

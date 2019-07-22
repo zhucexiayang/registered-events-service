@@ -1,6 +1,6 @@
 package cn.com.flaginfo.platform.registered.mybatis.service;
 
-import cn.com.flaginfo.platform.registered.commons.resp.BaseResponse;
+import cn.com.flaginfo.platform.api.common.base.BaseResponse;
 import cn.com.flaginfo.platform.registered.mybatis.entity.EventFailureRecord;
 import cn.com.flaginfo.platform.registered.mybatis.entity.EventFailureRecordExample;
 import cn.com.flaginfo.platform.registered.mybatis.vo.EventFailureRecordVo;
@@ -12,5 +12,7 @@ public interface EventFailureRecordService extends BaseService<EventFailureRecor
 
     BaseResponse<Boolean> updateStatus(EventFailureRecord record);
 
-    BaseResponse<List<EventFailureRecordVo>> list(EventFailureRecord record);
+    BaseResponse<List<EventFailureRecordVo>> list(EventFailureRecordVo record);
+
+    BaseResponse<Boolean> delRecords(EventFailureRecordVo vo);
 }

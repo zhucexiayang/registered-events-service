@@ -49,7 +49,7 @@
            enableCountByExample="true"
     >
     </table>-->
-    <table schema="zx_registered_event" tableName="application_service" domainObjectName="ApplicationService"
+   <!-- <table schema="zx_registered_event" tableName="application_service" domainObjectName="ApplicationService"
            selectByExampleQueryId="true"
            enableInsert="true"
            enableUpdateByExample="true"
@@ -60,8 +60,8 @@
            enableSelectByExample="true"
            enableCountByExample="true"
     >
-    </table>
-   <!-- <table schema="zx_registered_event" tableName="event_failure_record" domainObjectName="EventFailureRecord"
+    </table>-->
+   <table schema="zx_registered_event" tableName="event_failure_record" domainObjectName="EventFailureRecord"
            selectByExampleQueryId="true"
            enableInsert="true"
            enableUpdateByExample="true"
@@ -71,7 +71,7 @@
            enableSelectByPrimaryKey="true"
            enableSelectByExample="true"
            enableCountByExample="true"
-    />
+    /><!--
     <table schema="zx_registered_event" tableName="register_event" domainObjectName="RegisterEvent"
            selectByExampleQueryId="true"
            enableInsert="true"

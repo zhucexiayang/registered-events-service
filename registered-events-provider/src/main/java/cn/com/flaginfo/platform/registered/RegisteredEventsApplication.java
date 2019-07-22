@@ -1,5 +1,6 @@
 package cn.com.flaginfo.platform.registered;
 
+import cn.com.flaginfo.platform.registered.commons.diamond.PropertiesSourceInitializer;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -25,7 +26,7 @@ public class RegisteredEventsApplication {
         try {
             //从Diamond配置中心加载配置数据到环境中
             SpringApplication springApplication = new SpringApplication(RegisteredEventsApplication.class);
-           // springApplication.addInitializers(new PropertiesSourceInitializer());
+            springApplication.addInitializers(new PropertiesSourceInitializer());
             springApplication.run(args);
         }
         catch (Exception e){

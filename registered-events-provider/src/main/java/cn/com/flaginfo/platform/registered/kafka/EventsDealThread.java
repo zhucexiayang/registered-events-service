@@ -70,7 +70,7 @@ public class EventsDealThread implements  Runnable {
                             //失败数据处理
                             log.info("the app key {},the event type is {},callback url [{}] fault,the content is:[{}]",
                                     item.getAppKey(),eventType,item.getCallbackUrl(),json.toString());
-                            this.dealFailureRecord(jsonParam,item.getId());
+                            this.dealFailureRecord(jsonParam,item.getId(),item.getAppKey(),eventType);
                         }
                     }
                 }catch (Exception e){
@@ -78,7 +78,7 @@ public class EventsDealThread implements  Runnable {
                     log.error("the app key {},the event type is {},callback url [{}] fault,the content is:[{}]",
                             item.getAppKey(),eventType,item.getCallbackUrl(),json.toString());
                     //插入当前记录到失败记录表
-                    this.dealFailureRecord(jsonParam,item.getId());
+                    this.dealFailureRecord(jsonParam,item.getId(),item.getAppKey(),eventType);
                 }
             }
         }
@@ -94,12 +94,14 @@ public class EventsDealThread implements  Runnable {
         jsonT.put("eventType",eventType);
         return jsonT;
     }
-    private void dealFailureRecord(JSONObject jsonObject,Long appId){
+    private void dealFailureRecord(JSONObject jsonObject,Long appId,String appkey,String eventType){
         EventFailureRecord record=new EventFailureRecord();
         record.setContent(jsonObject.toJSONString());
         record.setCreateDate(DateUtil.getDates());
         record.setStatus("noDeal");
         record.setAppId(appId);
+        record.setAppKey(appkey);
+        record.setEventType(eventType);
         eventService.saveOrUpdate(record);
     }
 }

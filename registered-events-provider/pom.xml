@@ -50,7 +50,7 @@
         </dependency>
 
 
-       <!-- <dependency>
+        <dependency>
             <groupId>com.taobao.diamond</groupId>
             <artifactId>diamond-utils</artifactId>
             <version>2.0.5.3</version>
@@ -59,7 +59,7 @@
             <groupId>com.taobao.diamond</groupId>
             <artifactId>diamond-client</artifactId>
             <version>2.0.5.3</version>
-        </dependency>-->
+        </dependency>
 
 
         <dependency>
@@ -94,11 +94,11 @@
         </dependency>
 
         <!--底层jar包-->
-       <!-- <dependency>
+        <dependency>
             <groupId>cn.com.flaginfo</groupId>
             <artifactId>api-common</artifactId>
             <version>6.1.0-SNAPSHOT</version>
-        </dependency>-->
+        </dependency>
 
         <!-- gson-->
         <dependency>
@@ -189,6 +189,13 @@
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-clients</artifactId>
             <version>1.1.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>28.0-jre</version>
         </dependency>
 
     </dependencies>

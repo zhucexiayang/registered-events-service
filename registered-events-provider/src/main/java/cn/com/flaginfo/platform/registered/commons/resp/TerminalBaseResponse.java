@@ -1,6 +1,7 @@
 package cn.com.flaginfo.platform.registered.commons.resp;
 
 
+import cn.com.flaginfo.platform.api.common.base.BaseResponse;
 
 /**
  * @Author Meng.Liu

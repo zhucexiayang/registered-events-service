@@ -1,6 +1,6 @@
 package cn.com.flaginfo.platform.registered.mybatis.service;
 
-import cn.com.flaginfo.platform.registered.commons.resp.BaseResponse;
+import cn.com.flaginfo.platform.api.common.base.BaseResponse;
 import cn.com.flaginfo.platform.registered.mybatis.entity.ApplicationService;
 import cn.com.flaginfo.platform.registered.mybatis.entity.ApplicationServiceExample;
 import cn.com.flaginfo.platform.registered.mybatis.vo.ApplicationServiceVo;
